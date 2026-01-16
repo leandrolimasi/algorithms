@@ -1,22 +1,20 @@
 package com.github.leandrolimasi.algorithms;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.Test;
 
-@RunWith(SpringRunner.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class RepeatedStringTest {
 
   private RepeatedString repeatedString = new RepeatedString();
 
   @Test
   public void testCase1() {
-    Assert.assertEquals(7, repeatedString.repeatedString("aba", 10));
+    assertEquals(7, repeatedString.repeatedString("aba", 10));
   }
 
   @Test
   public void testCase2() {
-    Assert.assertEquals(1000000000000L, repeatedString.repeatedString("a", 1000000000000L));
+    assertEquals(1000000000000L, repeatedString.repeatedString("a", 1000000000000L));
   }
 }

@@ -1,11 +1,9 @@
 package com.github.leandrolimasi.algorithms.arrays;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.Test;
 
-@RunWith(SpringRunner.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class TwoDArrayDSTest {
 
   private TwoDArrayDS twoDArrayDS = new TwoDArrayDS();
@@ -21,7 +19,7 @@ public class TwoDArrayDSTest {
       {0, 0, 1, 2, 4, 0}
     };
 
-    Assert.assertEquals(19, twoDArrayDS.hourglassSum(hourglass));
+    assertEquals(19, twoDArrayDS.hourglassSum(hourglass));
   }
 
   @Test
@@ -35,7 +33,7 @@ public class TwoDArrayDSTest {
       {0, 0, -1, -2, -4, 0}
     };
 
-    Assert.assertEquals(13, twoDArrayDS.hourglassSum(hourglass));
+    assertEquals(13, twoDArrayDS.hourglassSum(hourglass));
   }
 
   @Test
@@ -49,7 +47,7 @@ public class TwoDArrayDSTest {
       {0, 0, 1, 2, 4, 0}
     };
 
-    Assert.assertEquals(28, twoDArrayDS.hourglassSum(hourglass));
+    assertEquals(28, twoDArrayDS.hourglassSum(hourglass));
   }
 
   @Test
@@ -63,6 +61,6 @@ public class TwoDArrayDSTest {
       {-3, -6, 0, -8, -6, -7}
     };
 
-    Assert.assertEquals(-19, twoDArrayDS.hourglassSum(hourglass));
+    assertEquals(-19, twoDArrayDS.hourglassSum(hourglass));
   }
 }

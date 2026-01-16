@@ -1,13 +1,11 @@
 package com.github.leandrolimasi.algorithms;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
 public class TrickyTest {
 
   @Test
@@ -24,9 +22,11 @@ public class TrickyTest {
     assertTrue(c.equals(d));
   }
 
-  @Test(expected = NullPointerException.class)
+  @Test
   public void testCaseUnboxingNull() {
     Integer a = null;
-    int b = a;
+    assertThrows(NullPointerException.class, () -> {
+      int b = a;
+    });
   }
 }

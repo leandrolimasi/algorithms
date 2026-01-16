@@ -1,12 +1,9 @@
 package com.github.leandrolimasi.algorithms.arrays;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-@RunWith(SpringRunner.class)
 public class LeftRotationTest {
 
   private LeftRotation leftRotation = new LeftRotation();

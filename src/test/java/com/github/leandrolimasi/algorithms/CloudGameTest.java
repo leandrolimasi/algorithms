@@ -1,13 +1,11 @@
 package com.github.leandrolimasi.algorithms;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest(classes = {CloudGame.class})
 public class CloudGameTest {
 
@@ -15,11 +13,11 @@ public class CloudGameTest {
 
   @Test
   public void testCase1() {
-    Assert.assertEquals(cloudGame.jumpingOnClouds(new int[] {0, 0, 1, 0, 0, 1, 0}), 4);
+    assertEquals(4, cloudGame.jumpingOnClouds(new int[] {0, 0, 1, 0, 0, 1, 0}));
   }
 
   @Test
   public void testCase2() {
-    Assert.assertEquals(cloudGame.jumpingOnClouds(new int[] {0, 0, 0, 1, 0, 0}), 3);
+    assertEquals(3, cloudGame.jumpingOnClouds(new int[] {0, 0, 0, 1, 0, 0}));
   }
 }
