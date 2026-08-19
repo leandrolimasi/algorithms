@@ -9,6 +9,41 @@ import java.util.stream.Collectors;
  * Created by leandrolimadasilva on 25/08/17.
  * Here I need to calculate the maximum beauty value out of all possible
  * equipment arrangements in the lowest possible order.
+ *
+ * <h2>UMPIRE</h2>
+ *
+ * <p><b>Understand:</b> given a list of equipment values, arrange them (any permutation) so that
+ * an alternating add/divide/multiply "beauty" formula (add the 1st, divide by the next even-index
+ * item, multiply by the next odd-index item, ...) is maximized; among arrangements that tie for
+ * the maximum beauty, return the lexicographically lowest one.
+ *
+ * <p><b>Match:</b> Optimization -> this is implemented as <b>brute-force permutation
+ * enumeration</b> (generate every permutation, score each, pick the best), not Dynamic Programming
+ * or Greedy. Greedy doesn't obviously apply because the formula's effect on a value (add vs.
+ * divide vs. multiply) depends on its <i>position's parity</i>, so a locally-attractive value can
+ * become a poor choice once its position is fixed; a DP formulation would need to track which
+ * subset of items has been used so far as part of the state, which only helps if the beauty
+ * contribution can be decomposed independently of the exact arrangement -- not attempted here.
+ *
+ * <p><b>Plan:</b> {@link #generatePerm(List)} recursively builds every permutation of the input;
+ * for each permutation {@link #calcBeauty(List)} computes its beauty; the permutations are
+ * collected into a {@code TreeMap<String, Double>} keyed by the comma-joined permutation (which
+ * sorts keys lexicographically) so that, after sorting entries by beauty descending, the first
+ * entry with the maximum beauty is also the lexicographically smallest such permutation.
+ *
+ * <p><b>Implement:</b> see {@link #arrangeEquipments(List)} below.
+ *
+ * <p><b>Review:</b> there is currently no dedicated test class for this algorithm (unlike the
+ * other classes in this package) -- worth adding one, ideally with small inputs (3-6 items) given
+ * the cost noted below.
+ *
+ * <p><b>Evaluate:</b> Time and space are both <b>O(n! * n)</b> -- {@code n!} permutations are
+ * generated and stored (each permutation costs O(n) to build/score/stringify), which is factorial,
+ * not polynomial, growth. Concretely: this is only practical for very small {@code n} (roughly up
+ * to 8-10). The {@link #main(String[])} example below calls this with 13 equipments, which means
+ * 13! &asymp; 6.2 billion permutations &mdash; that call would not complete in any reasonable time
+ * or memory and should not be run as-is; it's left here as a reminder of the algorithm's limits
+ * rather than a safe example invocation.
  */
 public class KingdomArmory {
 

@@ -38,6 +38,30 @@ package com.github.leandrolimasi.algorithms;
  *
  * <p>Explanation 1 Because all of the first n=1000000000000 letters of the infinite string are a,
  * we print 1000000000000 on a new line.
+ *
+ * <h2>UMPIRE</h2>
+ *
+ * <p><b>Understand:</b> {@code s} repeats infinitely; count the 'a's among the first {@code n}
+ * characters of that infinite string, where {@code n} can be as large as 10^12.
+ *
+ * <p><b>Match:</b> Strings + optimization, but via <b>modular arithmetic / cycle exploitation</b>
+ * rather than DP or greedy: since the string is just {@code s} repeated, one period's 'a' count
+ * scales linearly with the number of full periods ({@code n / s.length()}), plus a leftover
+ * partial period ({@code n % s.length()}) that must be counted directly.
+ *
+ * <p><b>Plan:</b> count 'a's in one copy of {@code s}; multiply by {@code n / s.length()} full
+ * copies; separately count 'a's in the first {@code n % s.length()} characters of {@code s} for
+ * the remainder; sum the two.
+ *
+ * <p><b>Implement:</b> see {@link #repeatedString(String, long)} below.
+ *
+ * <p><b>Review:</b> exercised by {@code RepeatedStringTest}, covering multiple full periods plus a
+ * remainder, an astronomically large {@code n} (proving the solution doesn't loop n times), n
+ * smaller than one period, a period with no 'a' at all, and a period made entirely of 'a'.
+ *
+ * <p><b>Evaluate:</b> Time O(m) where m = s.length() &mdash; completely independent of {@code n},
+ * which is what makes n = 10^12 tractable. Space O(1) extra (only counters; charAt is used instead
+ * of toCharArray, so no auxiliary array is allocated).
  */
 public class RepeatedString {
 

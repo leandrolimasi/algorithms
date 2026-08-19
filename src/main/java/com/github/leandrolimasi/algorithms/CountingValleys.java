@@ -46,6 +46,31 @@ _/\      _
    \    /
     \/\/
 He enters and leaves one valley.
+
+UMPIRE
+------
+Understand: given a sequence of U/D steps starting and ending at sea level, count how many
+times the hiker completes a valley, i.e. rises back to sea level via a 'U' step after having
+dipped below it.
+
+Match: this is neither a pointer/sliding-window problem, a graph traversal, a DP/greedy
+optimization, nor a sorted-data search -- it's the simpler "running state / single-pass
+accumulator" pattern (the same shape used for balanced-parentheses or high-water-mark problems):
+one scalar (the current altitude) fully captures everything needed to make a decision at each
+step, so a single linear scan suffices.
+
+Plan: keep a running "level" counter; ++level on 'U', --level on 'D'; whenever a 'U' step brings
+level back to exactly 0, increment the valley count.
+
+Implement: see countingValleys(int, String) below.
+
+Review: exercised by CountingValleysTest, covering one valley, two valleys separated by a
+mountain, zero valleys, a pure mountain (never dips), the minimal single-step valley, and two
+consecutive separate valleys.
+
+Evaluate: Time O(n) where n = s.length(), one pass over the characters. Space: the counters
+themselves are O(1), but s.toCharArray() allocates an extra O(n) char array up front; iterating
+with s.charAt(i) instead would make this a true O(1)-extra-space solution.
 */
 @Component
 public class CountingValleys {
